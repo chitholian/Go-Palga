@@ -12,7 +12,7 @@ class PublicFileController extends Controller{
 	public static function index($page = 1){
 		$files      = PublicFile::orderBy('id', 'desc')->forPage($page, 15)->get();
 		$total_page = (int) ceil(PublicFile::count('id') / 15);
-		if($page > $total_page || $page < 1){
+		if($page != 1 && $page > $total_page || $page < 1){
 			abort(404);
 		}
 
