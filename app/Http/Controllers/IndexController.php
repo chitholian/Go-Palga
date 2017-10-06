@@ -12,8 +12,8 @@ class IndexController extends Controller{
 	public static function index(){
 		$updates         = FileController::updates();
 		$downloads       = FileController::downloads();
-		$file_categories = Category::where('type', '=', 'F')->get();
-		$sms_categories  = Category::where('type', '=', 'S')->get();
+		$file_categories = Category::where([['type', '=', 'F'], ['folder_id','=',0]])->get();
+		$sms_categories  = Category::where([['type', '=', 'S'], ['folder_id','=',0]])->get();
 
 		return view('index', compact('updates', 'downloads', 'file_categories', 'sms_categories'));
 	}
