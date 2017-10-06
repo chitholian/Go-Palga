@@ -23,7 +23,7 @@ class PublicFileController extends Controller{
 		$file = new PublicFile(['title' => $request->input('title')]);
 		if($request->input('title') && $request->hasFile('file') && $request->file('file')->isValid()){
 			$file->type     = $request->file('file')->getClientMimeType();
-			$file->path     = Storage::disk('upload')->putFileAs('public/' . date('Y/m-'), $request->file('file'), time() . str_slug($request->input('title')) . '.' . $request->file('file')->getClientOriginalExtension());
+			$file->path     = Storage::disk('upload')->putFileAs('public/' . date('Y/m'), $request->file('file'), time() . '.' . $request->file('file')->getClientOriginalExtension());
 			$file->size     = Storage::disk('upload')->size($file->path);
 			$file->thumb_id = 1;
 			$file->save();
@@ -42,7 +42,7 @@ class PublicFileController extends Controller{
 		}
 		$path = Storage::disk('upload')->path($file->path);
 
-		return response()->download($path, $file->title . '.' . pathinfo($path, PATHINFO_EXTENSION));
+		return response()->download($path, filter_var($file->title, FILTER_SANITIZE_ENCODED). '.' . pathinfo($path, PATHINFO_EXTENSION));
 	}
 
 	public static function delete($id){
