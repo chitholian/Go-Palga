@@ -23,6 +23,29 @@
 
 require __DIR__.'/../bootstrap/autoload.php';
 
+/***************** Mime Type Guesser *************/
+class CustomTypeGuesser implements Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface {
+
+	/**
+	 * Guesses the mime type of the file with the given path.
+	 *
+	 * @param string $path The path to the file
+	 *
+	 * @return string The mime type or NULL, if none could be guessed
+	 *
+	 * @throws \Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException If the file does not exist
+	 * @throws \Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException If the file could not be read
+	 */
+
+	public function guess($path){
+		return 'application/octet-stream';
+	}
+}
+
+$guesser = Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesser::getInstance();
+$guesser->register(new CustomTypeGuesser());
+
+
 /*
 |--------------------------------------------------------------------------
 | Turn On The Lights
