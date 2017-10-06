@@ -1,0 +1,1 @@
+@extends('template') @section('title'){{$sms->title}}@stop @section('main') <div class="row"> <div class="col-12"><h2 class="title"><a href="{{asset('backend/edit/sms/'.$sms->id)}}" class="btn round">&swArr;</a> {{$sms->title}} </h2> <p>{{$sms->body}}</p> </div> </div> @stop 
