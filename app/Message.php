@@ -18,4 +18,8 @@ class Message extends Model{
 	public static function nextIndex($parent = 0){
 		return Message::where('folder_id', '=', $parent)->count('id') + 1;
 	}
+
+	public function viewCount(){
+		return 'View' . ($this->views > 1 ? 's' : '') . ': ' . $this->views;
+	}
 }

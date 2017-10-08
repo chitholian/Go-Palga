@@ -13,8 +13,8 @@ class MessageController extends Controller{
 		return view('sms_index', compact('categories'));
 	}
 
-	public static function display($slug){
-		$sms = Message::where('slug', '=', $slug)->first();
+	public static function display($id){
+		$sms = Message::find($id);
 		if( ! $sms){
 			abort(404);
 		}

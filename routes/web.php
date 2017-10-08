@@ -73,7 +73,7 @@ Route::any('/open-mirror/{id}', 'FileController@openMirror');
 
 
 Route::any('/sms', 'MessageController@index');
-Route::any('/sms/{slug}', 'MessageController@display');
+Route::any('/sms/by-id/{id}', 'MessageController@display');
 
 Route::any('/downloads', 'FileController@index');
 
