@@ -57,6 +57,8 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth', 'namespace' => 'Adm
 	Route::delete('/mirror/{id}', 'MirrorController@delete');
 	Route::delete('/sms/{id}', 'MessageController@delete');
 	Route::delete('/file/{id}', 'FileController@delete');
+
+	Route::get('/manager', 'MyController@index');
 });
 
 Route::any('/backend/delete/public/{id}', 'PublicFileController@delete')->middleware('auth');
